@@ -1,13 +1,30 @@
 class AssemblyLine
+
+  CARS_PER_SPEED = 221
+
   def initialize(speed)
     @speed = speed
   end
 
   def production_rate_per_hour
-    raise 'Please implement the AssemblyLine#production_rate_per_hour method'
+    success_rate * CARS_PER_SPEED * @speed
   end
 
   def working_items_per_minute
-    raise 'Please implement the AssemblyLine#working_items_per_minute method'
+    (production_rate_per_hour / 60).floor
+  end
+
+  private
+  def success_rate
+    case @speed
+    when 1..4
+      1
+    when 5..8
+      0.9
+    when 9
+      0.8
+    when 10
+      0.77
+    end
   end
 end
