@@ -8,10 +8,7 @@ class LogLineParser
   end
 
   def message
-    m = @line.gsub(ERROR_PREFIX, '')
-    m = m.gsub(WARNING_PREFIX, '')
-    m = m.gsub(INFO_PREFIX, '')
-    m.strip
+    @line.split(':')[1].strip
   end
 
   def log_level
