@@ -1,14 +1,9 @@
 module SavingsAccount
   def self.interest_rate(balance)
-    if balance < 0
-      3.213
-    elsif balance < 1000
-      0.5
-    elsif balance < 5000
-      1.621
-    else
-      2.475
-    end
+    return 3.213 if balance < 0
+    return 0.5 if balance < 1000
+    return 1.621 if balance < 5000
+    2.475
   end
 
   def self.annual_balance_update(balance)
