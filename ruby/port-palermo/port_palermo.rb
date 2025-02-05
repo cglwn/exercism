@@ -7,9 +7,7 @@ module Port
 
   def self.get_terminal(ship_identifier)
     case ship_identifier.to_s[0..2]
-    when 'OIL'
-      :A
-    when 'GAS'
+    when 'OIL', 'GAS'
       :A
     else
       :B
