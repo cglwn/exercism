@@ -1,4 +1,9 @@
 module Blackjack
+  STAND = 'S'
+  HIT = 'H'
+  SPLIT = 'P'
+  AUTOMATICALLY_WIN = 'W'
+
   def self.parse_card(card)
     case card
     when 'ace' then 11
@@ -28,6 +33,29 @@ module Blackjack
   end
 
   def self.first_turn(card1, card2, dealer_card)
-    raise "Please implement the Blackjack.first_turn method"
+    if card1 == 'ace' && card2 == 'ace'
+      return SPLIT
+    end
+
+    case card_range(card1, card2)
+    when 'blackjack'
+      case dealer_card
+      when 'ace', 'ten', 'king', 'queen', 'jack'
+        STAND
+      else
+        AUTOMATICALLY_WIN
+      end
+    when 'high'
+      STAND
+    when 'mid'
+      case parse_card(dealer_card)
+      when (7..11)
+        HIT
+      else
+        STAND
+      end
+    else
+      HIT
+    end
   end
 end
