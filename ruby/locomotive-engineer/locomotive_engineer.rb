@@ -1,6 +1,6 @@
 class LocomotiveEngineer
-  def self.generate_list_of_wagons(*args)
-    args
+  def self.generate_list_of_wagons(*wagons)
+    wagons
   end
 
   def self.fix_list_of_wagons(each_wagons_id, missing_wagons)
