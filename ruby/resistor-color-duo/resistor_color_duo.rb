@@ -15,7 +15,11 @@ module ResistorColorDuo
   private_constant :COLOR_VALUE
   class << self
     def value colors
-      return COLOR_VALUE[colors[0]] * 10 + COLOR_VALUE[colors[1]]
+      colors
+        .first(2)
+        .map { COLOR_VALUE[_1] }
+        .join('')
+        .to_i
     end
   end
 end
