@@ -2,9 +2,7 @@ module Acronym
   class << self
     def abbreviate phrase
       phrase
-        .split(' ')
-        .map { _1.split('-') }
-        .flatten
+        .scan(/[A-Za-z]+/)
         .map { _1[0].upcase }
         .join('')
     end
