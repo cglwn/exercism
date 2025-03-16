@@ -1,5 +1,9 @@
 class DndCharacter
   BASE_HITPOINTS = 10
+  STATS = %i[strength dexterity constitution intelligence wisdom charisma]
+  private_constant :STATS
+
+  attr_reader *STATS
 
   def self.modifier modifier
     case modifier
@@ -17,26 +21,17 @@ class DndCharacter
     end
   end
 
-  attr_reader :strength
-  attr_reader :dexterity
-  attr_reader :constitution
-  attr_reader :intelligence
-  attr_reader :wisdom
-  attr_reader :charisma
-  attr_reader :hitpoints
-  
   def initialize
     @prng = Random.new
 
-    @strength = roll_stat
-    @dexterity = roll_stat
-    @constitution = roll_stat
-    @intelligence = roll_stat
-    @wisdom = roll_stat
-    @charisma = roll_stat
-
-    @hitpoints = BASE_HITPOINTS + DndCharacter.modifier(@constitution)
+    STATS.each do |stat|
+      instance_variable_set("@#{stat}", roll_stat)
+    end
   end
+
+  def hitpoints
+    BASE_HITPOINTS + DndCharacter.modifier(@constitution)
+ end
 
   private
     def roll_stat
