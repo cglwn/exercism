@@ -31,26 +31,21 @@ class DndCharacter
   attr_reader :hitpoints
   
   def initialize
-    prng = Random.new
+    @prng = Random.new
 
-    rolls = [prng.rand(1..6), prng.rand(1..6), prng.rand(1..6), prng.rand(1..6)]
-    @strength = rolls.max(3).sum
-
-    rolls = [prng.rand(1..6), prng.rand(1..6), prng.rand(1..6), prng.rand(1..6)]
-    @dexterity = rolls.max(3).sum
-
-    rolls = [prng.rand(1..6), prng.rand(1..6), prng.rand(1..6), prng.rand(1..6)]
-    @constitution = rolls.max(3).sum
-    
-    rolls = [prng.rand(1..6), prng.rand(1..6), prng.rand(1..6), prng.rand(1..6)]
-    @intelligence = rolls.max(3).sum
-    
-    rolls = [prng.rand(1..6), prng.rand(1..6), prng.rand(1..6), prng.rand(1..6)]
-    @wisdom = rolls.max(3).sum
-
-    rolls = [prng.rand(1..6), prng.rand(1..6), prng.rand(1..6), prng.rand(1..6)]
-    @charisma = rolls.max(3).sum
+    @strength = roll_stat
+    @dexterity = roll_stat
+    @constitution = roll_stat
+    @intelligence = roll_stat
+    @wisdom = roll_stat
+    @charisma = roll_stat
 
     @hitpoints = BASE_HITPOINTS + DndCharacter.modifier(@constitution)
   end
+
+  private
+    def roll_stat
+      rolls = [@prng.rand(1..6), @prng.rand(1..6), @prng.rand(1..6), @prng.rand(1..6)]
+      rolls.max(3).sum
+    end
 end
