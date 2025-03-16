@@ -3,22 +3,17 @@ class DndCharacter
 
   def self.modifier modifier
     case modifier
-    when 3, 4
-      modifier - 7
-    when 5, 6
-      modifier - 8
-    when 7, 8
-      modifier - 9
-    when 9, 10
-      modifier - 10
-    when 11, 12
-      modifier - 11
-    when 13, 14
-      modifier - 12
-    when 15, 16
-      modifier - 13
-    when 17, 18
-      modifier - 14
+    when 3 then -4
+    when 4, 5 then -3
+    when 6, 7 then -2
+    when 8, 9 then -1
+    when 10, 11 then 0
+    when 12, 13 then 1
+    when 14, 15 then 2
+    when 16, 17 then 3
+    when 18 then 4
+    else
+      raise ArgumentError.new("Modifier must be in range (3..18)")
     end
   end
 
