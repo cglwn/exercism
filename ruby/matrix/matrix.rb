@@ -1,7 +1,19 @@
-=begin
-Write your code for the 'Matrix' exercise in this file. Make the tests in
-`matrix_test.rb` pass.
+class Matrix
+  def initialize str
+    @data = []
+    str
+      .split("\n")
+      .each do |row_str|
+        row = row_str.split(' ').map(&:to_i)
+        @data << row
+      end
+  end
 
-To get started with TDD, see the `README.md` file in your
-`ruby/matrix` directory.
-=end
+  def row row_idx
+    return @data[row_idx - 1]
+  end
+
+  def column col_idx
+    @data.map { |r| r[col_idx - 1] }
+  end
+end
